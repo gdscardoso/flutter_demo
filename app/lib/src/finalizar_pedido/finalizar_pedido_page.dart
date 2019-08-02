@@ -18,7 +18,7 @@ class _FinalizarPedidoPageState extends State<FinalizarPedidoPage> {
   void initState() {
     super.initState();
 
-    Future.delayed(Duration(seconds: 4)).then((_) {
+    Future.delayed(Duration(seconds: 2)).then((_) {
       bloc?.loadingEvent?.add(false);
     });
   }

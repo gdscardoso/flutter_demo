@@ -16,7 +16,7 @@ class LoadingWidget extends StatelessWidget {
       return Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        color: Colors.black12,
+        color: backgroundColor,
         child: Center(
           child: SizedBox(
             width: 150,

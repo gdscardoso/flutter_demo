@@ -9,10 +9,10 @@ class ProdutosBloc extends BlocBase {
   ProdutosBloc(this.api);
 
   final BehaviorSubject _listController = BehaviorSubject.seeded(true);
-  Observable<List<Produto>> get listOut =>
-      _listController.stream.asyncMap((v) => api.getProducts());
 
-  refreshList() {
+  Observable<List<Produto>> get listOut => _listController.stream.asyncMap((v) => api.getProducts());
+
+  refreshList() async {
     _listController.add(true);
   }
 

@@ -16,6 +16,10 @@ dependencies:
   bloc_pattern: ^2.1.0
   rect_getter: ^0.0.1
   shared_preferences: ^0.5.2
+  flutter_masked_text: ^0.8.0
+  flutter_form_builder: ^3.3.1
+
+
 
 dev_dependencies:
   flutter_test:
@@ -26,6 +30,6 @@ flutter:
   uses-material-design: true
 
 flutter_icons:
-  android: "ic_launcher" 
+  android: "ic_launcher"
   ios: true
   image_path: "assets/icon/flutterando_icon.png"

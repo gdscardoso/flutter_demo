@@ -14,12 +14,12 @@ class ProdutosPage extends StatefulWidget {
 }
 
 class _ProdutosPageState extends State<ProdutosPage> {
-  
+
   final _bloc = BlocProvider.getBloc<ProdutosBloc>();
   final _carrinhoBloc = BlocProvider.getBloc<CarrinhoBloc>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  
+
 
   String _limitText(String text) {
     return text.substring(0, 30) + "...";
@@ -42,7 +42,7 @@ class _ProdutosPageState extends State<ProdutosPage> {
                 ),
               );
         }
-          
+
       },
       leading: Container(
           width: 40,
