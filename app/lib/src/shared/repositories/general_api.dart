@@ -17,7 +17,7 @@ class GeneralApi {
   Future<List<Produto>> getProducts() async {
     try {
       Response response = await dio.get(
-        "https://raw.githubusercontent.com/Flutterando/carrinho_compras/master/backend/products.json",
+        "https://raw.githubusercontent.com/gdscardoso/flutter_demo/master/backend/products.json",
       );
       if (Platform.isAndroid || Platform.isIOS) {
         SharedPreferences prefs = await SharedPreferences.getInstance();
