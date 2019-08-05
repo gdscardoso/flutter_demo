@@ -22,7 +22,7 @@ class App extends StatelessWidget {
     return BlocProvider(
       child: MaterialApp(
 //        home: ProdutosPage(),
-      home: LoginPage(),
+        home: LoginPage2(),
         debugShowCheckedModeBanner: true,
       ),
       blocs: [
