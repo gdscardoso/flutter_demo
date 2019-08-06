@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
 
-class LoginWidget extends StatelessWidget {
+class InputField extends StatelessWidget {
+  final String name;
   final Icon prefixIcon;
   final String label;
   final String placeholder;
@@ -14,7 +15,7 @@ class LoginWidget extends StatelessWidget {
   MaskedTextController _controller;
   List<FormFieldValidator> validators = [];
 
-  LoginWidget(
+  InputField(
       {Key key,
       this.label,
       this.placeholder,
@@ -23,7 +24,8 @@ class LoginWidget extends StatelessWidget {
       this.prefixIcon,
       this.required = false,
       this.maxLength,
-      this.minLength})
+      this.minLength,
+      this.name})
       : super(key: key) {
     this._initMaskAndValidators();
   }
@@ -40,16 +42,13 @@ class LoginWidget extends StatelessWidget {
       validators.add(FormBuilderValidators.minLength(minLength,
           errorText: "O tamanho "
               "mínimo de $label é ${minLength.toInt()}."));
-
-    if(true)
-      validators.add(CustomValidators.cpf(errorText: "O CPF digitado não é valido."));
   }
 
   @override
   Widget build(BuildContext context) {
     return FormBuilderTextField(
       controller: _controller,
-      attribute: label.replaceAll(label, " ").toLowerCase(),
+      attribute: name != null ? name : label.replaceAll(" ", "").toLowerCase(),
       obscureText: obscure,
       decoration: InputDecoration(
         prefixIcon: prefixIcon,
@@ -60,55 +59,4 @@ class LoginWidget extends StatelessWidget {
       validators: validators,
     );
   }
-}
-
-
-class CustomValidators extends FormBuilderValidators{
-
-  static FormFieldValidator cpf({
-    String errorText = "This cpf cannot be valid.",
-  }) {
-    return (valueCandidate) {
-      if (!_validarCPF(valueCandidate)) {
-        return errorText;
-      }
-
-      return null;
-    };
-
-  }
-
-  static bool _validarCPF(String cpf){
-    List<int> sanitizedCPF = cpf
-        .replaceAll(new RegExp(r'\.|-'), '')
-        .split('')
-        .map((String digit) => int.parse(digit))
-        .toList();
-    return !_blacklistedCPF(sanitizedCPF.join()) &&
-        sanitizedCPF[9] == _gerarDigitoVerificador(sanitizedCPF.getRange(0, 9).toList()) &&
-        sanitizedCPF[10] == _gerarDigitoVerificador(sanitizedCPF.getRange(0, 10).toList());
-  }
-
-  static bool _blacklistedCPF(String cpf) {
-    return
-      cpf == '11111111111' ||
-          cpf == '22222222222' ||
-          cpf == '33333333333' ||
-          cpf == '44444444444' ||
-          cpf == '55555555555' ||
-          cpf == '66666666666' ||
-          cpf == '77777777777' ||
-          cpf == '88888888888' ||
-          cpf == '99999999999';
-  }
-
-  static int _gerarDigitoVerificador(List<int> digits) {
-    int baseNumber = 0;
-    for (var i = 0; i < digits.length; i++) {
-      baseNumber += digits[i] * ((digits.length + 1) - i);
-    }
-    int verificationDigit = baseNumber * 10 % 11;
-    return verificationDigit >= 10 ? 0 : verificationDigit;
-  }
-
 }

@@ -10,7 +10,6 @@ import 'package:flutter/services.dart';
 import 'carrinho/carrinho_bloc.dart';
 import 'finalizar_pedido/finalizar_pedido_bloc.dart';
 import 'login/login_page.dart';
-import 'login/login_page2.dart';
 
 class App extends StatelessWidget {
   @override
@@ -22,7 +21,7 @@ class App extends StatelessWidget {
     return BlocProvider(
       child: MaterialApp(
 //        home: ProdutosPage(),
-        home: LoginPage2(),
+        home: LoginPage(),
         debugShowCheckedModeBanner: true,
       ),
       blocs: [
